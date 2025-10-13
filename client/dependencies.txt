@@ -1,0 +1,19 @@
+# Dependencias de React para el proyecto
+# Para instalar estas dependencias, ejecuta:
+# npm install react-router-dom react-hot-toast axios react-hook-form
+
+# Dependencias principales:
+react-router-dom     # Para el enrutamiento en React
+react-hot-toast      # Para mostrar notificaciones toast
+axios                # Cliente HTTP para hacer peticiones a la API
+react-hook-form      # Para manejar formularios de manera eficiente
+
+# Dependencias ya instaladas:
+react@^19.1.1
+react-dom@^19.1.1
+
+# Para instalar todas las dependencias:
+# npm install
+
+
+
