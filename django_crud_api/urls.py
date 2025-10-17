@@ -18,9 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
+from graphene_django.views import GraphQLView
+from tasks.schema import schema
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tasks/', include('tasks.urls')),
+    # GraphQL
+    path('graphql/', GraphQLView.as_view(graphiql=True, schema=schema)),
     # Documentación de la API
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

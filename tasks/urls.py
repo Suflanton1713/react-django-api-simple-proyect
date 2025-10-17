@@ -11,9 +11,7 @@ router.register(r'tasks', TaskViewSet, basename='task')
 router.register(r'projects', ProjectViewSet, basename='project')
 
 urlpatterns = [
-    path('api/', include(router.urls)),  # ViewSets
+    path('api/v1/', include(router.urls)),  # ViewSets - REST API v1
     path('manual/tasks/', TaskListCreateView.as_view()),  # Views manuales
     path('manual/tasks/<int:pk>/', TaskDetailView.as_view()),
-    path('graphql/', GraphQLView.as_view(graphiql=True, schema=schema)),
-    
 ]
