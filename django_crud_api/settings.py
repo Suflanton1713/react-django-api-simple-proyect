@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'django_filters',
     'rest_framework',
+    'graphene_django',
     'coreapi',
     'tasks'
 ]
@@ -127,6 +129,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
 
@@ -134,4 +137,24 @@ CORS_ALLOWED_ORIGINS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend","rest_framework.filters.SearchFilter"],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2,
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',
+        'rest_framework.throttling.AnonRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '20/minute',
+        'anon': '10/minute',
+        'task': '100/minute',
+    },
+}
+
+
+GRAPHENE = {
+    "SCHEMA": "tasks.schema.schema",  # ruta al schema.py donde definiste tu esquema
+    "MIDDLEWARE": [
+        "graphene_django.debug.DjangoDebugMiddleware",  # útil para desarrollo
+    ],
 }
